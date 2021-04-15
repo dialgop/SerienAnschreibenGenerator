@@ -36,7 +36,7 @@ public class ClientControl {
         while(clientToCreate.getVorname().length()==0){
             System.out.println("Enter your name");
             String firstNameInput = input.nextLine();
-            if(Validation.testName(firstNameInput)) {
+            if(Validation.testSentence(firstNameInput)) {
                 clientToCreate.setVorname(firstNameInput);
             }
             else
@@ -46,11 +46,30 @@ public class ClientControl {
         while(clientToCreate.getName().length()==0){
             System.out.println("Enter your last name");
             String lastNameInput = input.nextLine();
-            if(Validation.testName(lastNameInput)) {
+            if(Validation.testSentence(lastNameInput)) {
                 clientToCreate.setName(lastNameInput);
             }
             else
                 clientToCreate.setName("");
+        }
+
+        while(clientToCreate.getPostleitzahl()==-1){
+            System.out.println("Enter your postleitzahl");
+            String postalCodeInput = input.nextLine();
+            if(Validation.testPostalCode(postalCodeInput))
+                clientToCreate.setPostleitzahl(Integer.parseInt(postalCodeInput));
+            else
+                clientToCreate.setPostleitzahl(-1);
+        }
+
+        while(clientToCreate.getStadt().length()==0){
+            System.out.println("Enter your city");
+            String cityInput = input.nextLine();
+            if(Validation.testSentence(cityInput)) {
+                clientToCreate.setStadt(cityInput);
+            }
+            else
+                clientToCreate.setStadt("");
         }
 
         while(clientToCreate.getAnschrift().length()==0){
@@ -64,7 +83,8 @@ public class ClientControl {
         }
 
         System.out.println("Are you sure, that you want to save the data" +
-                " ("+clientToCreate.getName()+","+clientToCreate.getVorname()+","+clientToCreate.getAnschrift()+")\n" +
+                " ("+clientToCreate.getName()+","+clientToCreate.getVorname()+","+clientToCreate.getAnschrift()+","+
+                clientToCreate.getPostleitzahl()+","+clientToCreate.getStadt()+")\n"+
                 "(Y/y) will save the data, other key will return to the main menu");
         String yesNoClient = input.nextLine();
         if(yesNoClient.equals("y") || yesNoClient.equals("Y"))
@@ -81,9 +101,11 @@ public class ClientControl {
             String nameDB = client.getName();
             String vornameDB = client.getVorname();
             String anschrittDB = client.getAnschrift();
+            int postleitzahlDB = client.getPostleitzahl();
+            String stadtDB = client.getStadt();
 
-            stmt.executeUpdate("INSERT INTO Kunde (name,vorname,anschrift) " +
-                    "VALUES ('" + nameDB + "','" + vornameDB + "','" + anschrittDB + "')");
+            stmt.executeUpdate("INSERT INTO Kunde (name,vorname,anschrift,postleitzahl,stadt) " +
+                    "VALUES ('" + nameDB + "','" + vornameDB + "','" + anschrittDB + "'," + postleitzahlDB + ",'" + stadtDB +"')");
             System.out.println("Saved data:["+nameDB+","+vornameDB+","+anschrittDB+"]");
 
             con.close();
@@ -93,7 +115,7 @@ public class ClientControl {
     }
 
     public static List<Client> loadClientsFromDB(){
-        List<Client> clientsList = new ArrayList < Client > ();
+        List<Client> clientsList = new ArrayList<>();
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -104,7 +126,7 @@ public class ClientControl {
             ResultSet rs = stmt.executeQuery("SELECT * FROM Kunde");
 
             while(rs.next())
-                clientsList.add(loadClient(rs.getString(2),rs.getString(3),rs.getString(4)));
+                clientsList.add(loadClient(rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6)));
 
             con.close();
         }catch(ClassNotFoundException | SQLException e){
@@ -114,11 +136,13 @@ public class ClientControl {
         return clientsList;
     }
 
-    private static Client loadClient(String name, String vorname, String anschrift){
+    private static Client loadClient(String name, String vorname, String anschrift, int postleitzahl, String stadt){
         Client client = new Client();
         client.setName(name);
         client.setVorname(vorname);
         client.setAnschrift(anschrift);
+        client.setPostleitzahl(postleitzahl);
+        client.setStadt(stadt);
 
         return client;
     }
