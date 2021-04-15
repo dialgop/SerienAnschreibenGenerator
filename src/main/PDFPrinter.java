@@ -28,34 +28,41 @@ public class PDFPrinter {
 
             document = new PDDocument();
             document.addPage(page);
-            contentStream = new PDPageContentStream(document, page);
+            contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true);
 
             contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
+            contentStream.setFont(PDType1Font.TIMES_ITALIC, 20);
             contentStream.setLeading(20.f);
             contentStream.newLineAtOffset(25, 800);
 
-            String text = client.getAnschrift();
+            String text = client.getAnschrift() + ", " + client.getPostleitzahl() + ". " + client.getStadt();
             String Line1 = "sehr geehrte(r):";
             String Line2 = client.getVorname() + " " + client.getName();
-            String line3 = "Im Anhang finden Sie die Liste der Fahrzeuge, die unsere Firma Autohaus unseren aktuellen";
-            String line4 = "Kunden anbietet. Wenn Sie Interesse an einem unserer Modelle haben, zögern Sie bitte nicht";
-            String line5 = "uns zu kontaktieren";
+            String line3 = "Im Anhang  finden Sie die Liste der  Fahrzeuge, die  unsere Firma";
+            String line4 = "Autohaus unseren aktuellen Kunden anbietet.  Wenn Sie Interesse ";
+            String line5 = "an einem unserer  Modelle  haben, zögern Sie bitte  nicht uns  zu";
+            String line6 = "kontaktieren.";
 
             contentStream.showText(text);
             contentStream.newLine();
             contentStream.newLine();
+            contentStream.newLine();
+            contentStream.newLine();
+            contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
             contentStream.showText(Line1);
             contentStream.newLine();
             contentStream.showText(Line2);
             contentStream.newLine();
             contentStream.newLine();
-            contentStream.newLine();
+            contentStream.setFont(PDType1Font.TIMES_ITALIC, 20);
             contentStream.showText(line3);
             contentStream.newLine();
             contentStream.showText(line4);
             contentStream.newLine();
             contentStream.showText(line5);
+            contentStream.newLine();
+            contentStream.showText(line6);
+            contentStream.newLine();
             contentStream.newLine();
             contentStream.newLine();
 
@@ -64,9 +71,10 @@ public class PDFPrinter {
                         vehicle.getBezeichnung() + ", " + vehicle.getKw_leistung() + " KW";
                 String lineVerkaufsPreis = "Preis: "+ vehicle.getVerkaufspreis();
 
+                contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
                 contentStream.showText(lineAuto);
                 contentStream.newLine();
-                contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
+                contentStream.setFont(PDType1Font.TIMES_ITALIC, 20);
                 contentStream.showText(lineVerkaufsPreis);
                 contentStream.newLine();
 
@@ -76,10 +84,9 @@ public class PDFPrinter {
             String lineVerabschied2 = "Automobilhaus";
 
             contentStream.newLine();
-            contentStream.setFont(PDType1Font.TIMES_ITALIC, 20);
+            contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
             contentStream.showText(lineVerabschied1);
             contentStream.newLine();
-            contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 20);
             contentStream.showText(lineVerabschied2);
 
             contentStream.close();
