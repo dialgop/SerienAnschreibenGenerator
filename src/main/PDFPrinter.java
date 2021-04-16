@@ -10,21 +10,25 @@ import java.io.IOException;
 import java.util.List;
 
 public class PDFPrinter {
-    public static void generatePDF(List<Client> clients, List<Vehicle> vehicles) throws IOException {
+    public static void generatePDF() throws IOException {
+
+        List<Client> clientList = ClientControl.loadClientsFromDB();
+        List<Vehicle> vehicleList = VehicleControl.loadVehiclesFromDB();
+
         PDDocument document;
         PDPage page = new PDPage(PDRectangle.A4);
         PDPageContentStream contentStream;
 
-        if(clients.size()<1){
-            System.out.println("The database clients does not have registries, no letters will be printed");
+        if(clientList.size()<1){
+            System.out.println("Die Datenbank Kunde ist leer,es werden keine Briefe gedruckt");
             return;
         }
-        if(vehicles.size()<1){
-            System.out.println("The database vehicles does not have registries, no letters will be printed");
+        if(vehicleList.size()<1){
+            System.out.println("Die Datenbank Fahrzeug ist leer,es werden keine Briefe gedruckt");
             return;
         }
 
-        for(Client client: clients){
+        for(Client client: clientList){
 
             document = new PDDocument();
             document.addPage(page);
@@ -66,7 +70,7 @@ public class PDFPrinter {
             contentStream.newLine();
             contentStream.newLine();
 
-            for(Vehicle vehicle: vehicles){
+            for(Vehicle vehicle: vehicleList){
                 String lineAuto = "("+vehicle.getFahrzeugtyp()+") " + vehicle.getHeersteller() + " " +
                         vehicle.getBezeichnung() + ", " + vehicle.getKw_leistung() + " KW";
                 String lineVerkaufsPreis = "Preis: "+ vehicle.getVerkaufspreis();
@@ -96,5 +100,6 @@ public class PDFPrinter {
             document.close();
 
         }
+        System.out.println("Die Dateien wurden gedruckt");
     }
 }

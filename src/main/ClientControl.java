@@ -7,6 +7,28 @@ import java.util.Scanner;
 
 public class ClientControl {
 
+    public static void startClientControl(){
+        Scanner mainInput = new Scanner(System.in);
+        List<Client> dBClients;
+        int clientOption = selectOption();
+        if(clientOption==1)
+            writeClient();
+        if(clientOption==2) {
+            dBClients = loadClientsFromDB();
+            System.out.println("Die folgende Liste enthält unsere aktuellen Kunden:\n" +
+                    "---------------------------------------------------");
+            for (Client clients : dBClients) {
+                String name = clients.getName();
+                String vorname = clients.getVorname();
+                String anschritt = clients.getAnschrift();
+                System.out.println("[name:" + name + ", vorname:" + vorname + ", anschritt:" + anschritt);
+            }
+            System.out.println("---------------------------------------------------\n");
+            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
+            mainInput.nextLine();
+        }
+    }
+
     /***
      * Displays the option related to the client menu
      * @return result: Selected option marked via console
@@ -15,15 +37,15 @@ public class ClientControl {
         Scanner input = new Scanner(System.in);
         int result;
         while(true){
-            System.out.println("Write (1) if you want to create a new client\n" +
-                    "or (2) if you want to see a list with all the clients.\n" +
-                    "Any other Number will stop this module.");
+            System.out.println("Drücken Sie die Taste (1), wenn Sie einen neuen Kunde anlegen wollen\n" +
+                    "oder (2) wenn Sie eine Liste mit allen Kunden sehen möchten. Jede\n" +
+                    "andere Option wird dieses Modul stoppen.");
             String option = input.nextLine();
             try{
                 result = Integer.parseInt(option);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Please choose only a numerical option.\n\n");
+                System.out.println(".\n\n");
             }
         }
         return result;
@@ -34,7 +56,7 @@ public class ClientControl {
 
         Scanner input = new Scanner(System.in);
         while(clientToCreate.getVorname().length()==0){
-            System.out.println("Enter your name");
+            System.out.println("Geben Sie Ihren Vornamen ein");
             String firstNameInput = input.nextLine();
             if(Validation.testSentence(firstNameInput)) {
                 clientToCreate.setVorname(firstNameInput);
@@ -44,7 +66,7 @@ public class ClientControl {
         }
 
         while(clientToCreate.getName().length()==0){
-            System.out.println("Enter your last name");
+            System.out.println("Geben Sie Ihren Namen ein");
             String lastNameInput = input.nextLine();
             if(Validation.testSentence(lastNameInput)) {
                 clientToCreate.setName(lastNameInput);
@@ -54,7 +76,7 @@ public class ClientControl {
         }
 
         while(clientToCreate.getPostleitzahl()==-1){
-            System.out.println("Enter your postleitzahl");
+            System.out.println("Geben Sie Ihre Postleitzahl ein");
             String postalCodeInput = input.nextLine();
             if(Validation.testPostalCode(postalCodeInput))
                 clientToCreate.setPostleitzahl(Integer.parseInt(postalCodeInput));
@@ -63,7 +85,7 @@ public class ClientControl {
         }
 
         while(clientToCreate.getStadt().length()==0){
-            System.out.println("Enter your city");
+            System.out.println("Geben Sie Ihre Stadt ein");
             String cityInput = input.nextLine();
             if(Validation.testSentence(cityInput)) {
                 clientToCreate.setStadt(cityInput);
@@ -73,7 +95,7 @@ public class ClientControl {
         }
 
         while(clientToCreate.getAnschrift().length()==0){
-            System.out.println("Enter your address");
+            System.out.println("Geben Sie Ihre Adresse ein");
             String addressInput = input.nextLine();
             if(Validation.testAddress(addressInput)) {
                 clientToCreate.setAnschrift(addressInput);
@@ -82,10 +104,10 @@ public class ClientControl {
                 clientToCreate.setAnschrift("");
         }
 
-        System.out.println("Are you sure, that you want to save the data" +
+        System.out.println("Sind Sie sicher, dass Sie die folgende Daten speichern wollen?" +
                 " ("+clientToCreate.getName()+","+clientToCreate.getVorname()+","+clientToCreate.getAnschrift()+","+
                 clientToCreate.getPostleitzahl()+","+clientToCreate.getStadt()+")\n"+
-                "(Y/y) will save the data, other key will return to the main menu");
+                "(Y) speichert die Daten, andere Taste kehrt zum Hauptmenü zurück");
         String yesNoClient = input.nextLine();
         if(yesNoClient.equals("y") || yesNoClient.equals("Y"))
             SaveClientInDB(clientToCreate);

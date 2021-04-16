@@ -9,42 +9,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         while(true) {
-            System.out.println("Please select an option \n" +
-                    "(1) to save an xml file into the Fahrzeug database \n" +
-                    "(2) to create a new client into the Kunde dabatase \n" +
-                    "(3) to print pdf letters for all users \n" +
-                    "(Q) to stop the program");
+            System.out.println("Bitte wählen Sie eine Option \n" +
+                    "(F) um einer xml-Datei in der Fahrzeug-Datenbank zu speichern \n" +
+                    "(K) um einen neuen Kunden in der Kunde-Datenbank anzulegen oder um alle Kunden aufzulisten. \n" +
+                    "(D) um pdf-Briefe für alle Kunden zu erzeugen \n" +
+                    "(Q) beendet das Programm");
             String option = input.nextLine();
             switch (option){
-                case "1":
+                case "F":
+                case "f":
                     VehicleControl readData = new VehicleControl();
-                    System.out.println("Please provide the path of the xml file");
+                    System.out.println("Bitte geben Sie den Pfad der xml-Datei an");
                     String path = input.nextLine();
                     readData.saveVehiclesinDB(path);//"/home/diego/Downloads/autos.xml"
                     break;
-                case "2":
-                    List<Client> dBClients = new ArrayList< Client >();;
-                    int clientOption = ClientControl.selectOption();
-                    if(clientOption==1)
-                        ClientControl.writeClient();
-                    if(clientOption==2) {
-                        dBClients = ClientControl.loadClientsFromDB();
-                        System.out.println("The following are our current clients:\n" +
-                                "---------------------------------------------------");
-                        for (Client clients : dBClients) {
-                            String name = clients.getName();
-                            String vorname = clients.getVorname();
-                            String anschritt = clients.getAnschrift();
-                            System.out.println("[name:" + name + ", vorname:" + vorname + ", anschritt:" + anschritt);
-                        }
-                        System.out.println("---------------------------------------------------\n");
-                    }
+                case "K":
+                case "k":
+                    ClientControl.startClientControl();
                     break;
-                case "3":
-                    List<Client> clientList = ClientControl.loadClientsFromDB();
-                    List<Vehicle> vehicleList = VehicleControl.loadVehiclesFromDB();
-                    PDFPrinter.generatePDF(clientList,vehicleList);
-                    System.out.println("Files printed");
+                case "D":
+                case "d":
+                    PDFPrinter.generatePDF();
                     break;
                 case "Q":
                 case "q":
