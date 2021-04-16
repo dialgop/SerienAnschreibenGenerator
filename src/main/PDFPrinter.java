@@ -8,9 +8,12 @@ import org.apache.pdfbox.pdmodel.font.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class PDFPrinter {
     public static void generatePDF() throws IOException {
+
+        Scanner input = new Scanner(System.in);
 
         List<Client> clientList = ClientControl.loadClientsFromDB();
         List<Vehicle> vehicleList = VehicleControl.loadVehiclesFromDB();
@@ -21,10 +24,14 @@ public class PDFPrinter {
 
         if(clientList.size()<1){
             System.out.println("Die Datenbank Kunde ist leer,es werden keine Briefe gedruckt");
+            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen");
+            input.nextLine();
             return;
         }
         if(vehicleList.size()<1){
             System.out.println("Die Datenbank Fahrzeug ist leer,es werden keine Briefe gedruckt");
+            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen");
+            input.nextLine();
             return;
         }
 
@@ -95,11 +102,12 @@ public class PDFPrinter {
 
             contentStream.close();
 
-            String fileName =  client.getName() + "_" + client.getVorname()+ ".pdf";
+            String fileName = client.getName() + "_" + client.getVorname()+ ".pdf";
             document.save(fileName);
             document.close();
 
         }
-        System.out.println("Die Dateien wurden gedruckt");
+        System.out.println("Die Dateien wurden erzeugt, Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen");
+        input.nextLine();
     }
 }

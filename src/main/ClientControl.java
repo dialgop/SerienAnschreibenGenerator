@@ -111,6 +111,8 @@ public class ClientControl {
         String yesNoClient = input.nextLine();
         if(yesNoClient.equals("y") || yesNoClient.equals("Y"))
             SaveClientInDB(clientToCreate);
+            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
+            input.nextLine();
     }
 
     private static void SaveClientInDB(Client client){

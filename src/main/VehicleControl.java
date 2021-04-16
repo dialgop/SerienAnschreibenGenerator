@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -59,6 +60,7 @@ public class VehicleControl {
             return;
 
         List<Vehicle> vehicleList = readXML(pathXML);
+        Scanner input = new Scanner(System.in);
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -79,6 +81,9 @@ public class VehicleControl {
                         "VALUES ('" + fahrzeugtypDB + "','" + bezeichnungDB + "','" + heerstellerDB + "'," + kw_leistungDB +
                         "," + verkaufspreisDB + ")");
                 System.out.println("Saved data:["+fahrzeugtypDB+","+bezeichnungDB+","+heerstellerDB+","+kw_leistungDB+"]");
+
+                System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
+                input.nextLine();
             }
 
             con.close();
