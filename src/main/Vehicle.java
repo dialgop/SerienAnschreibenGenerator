@@ -5,7 +5,7 @@ package main;
  * Attribute der Klasse verwendet.
  */
 
-public class Vehicle {
+public class Vehicle extends TransportMean {
 
     private String fahrzeugtyp;
     private String bezeichnung;
@@ -52,4 +52,6 @@ public class Vehicle {
     public void setVerkaufspreis(int verkaufspreis) {
         this.verkaufspreis = verkaufspreis;
     }
+
+    public void setIdTransportMean(int idForTransportMean){this.idTransportMean = idForTransportMean;}
 }
