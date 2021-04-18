@@ -35,11 +35,24 @@ public class Validation {
     }
 
     /**
+     * Prüft dass einen richtigen Input-Pfad ein XML Datei specifiziert ist.
+     * @param path - Input von Main() Methode.
+     * @return true/false
+     */
+    public static boolean testXMLPAth(String path){
+        if(path.length()<5 || !path.endsWith(".xml")){
+            System.out.println("Der Pfad enthält keine xml-Datei");
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Prüft dass ein Input-Postleitzahlt nur Ziffern enthält
      * @param code - Input von testPostalCode() Methode.
      * @return true/false
      */
-    public static boolean testOnlyDigits(String code){
+    private static boolean testOnlyDigits(String code){
         String regex = "\\d+";
         boolean out = code.matches(regex);
         if(out)
@@ -55,26 +68,13 @@ public class Validation {
      * @param code - Input von testPostalCode() Methode.
      * @return true/false
      */
-    public static boolean testLength5(String code){
+    private static boolean testLength5(String code){
         if(code.length()==5)
             return true;
         else{
             System.out.println("Deutsche Postleitzahlen haben nur 5 Ziffern");
             return false;
         }
-    }
-
-    /**
-     * Prüft dass einen richtigen Input-Pfad ein XML Datei specifiziert ist.
-     * @param path - Input von Main() Methode.
-     * @return true/false
-     */
-    public static boolean testXMLPAth(String path){
-        if(path.length()<5 || !path.endsWith(".xml")){
-            System.out.println("Der Pfad enthält keine xml-Datei");
-            return false;
-        }
-        return true;
     }
 
     /**

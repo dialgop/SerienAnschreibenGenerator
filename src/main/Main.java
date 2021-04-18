@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -31,14 +32,22 @@ public class Main {
                     System.out.println("Bitte geben Sie den Pfad der xml-Datei an");
                     String path = input.nextLine();
                     readData.saveVehiclesinDB(path);//"/home/diego/Downloads/autos.xml"
+                    System.out.println("\nDrücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen\n");
+                    input.nextLine();
                     break;
                 case "K":
                 case "k":
                     ClientControl.startClientControl();
+                    System.out.println("\nDrücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen\n");
+                    input.nextLine();
                     break;
                 case "D":
                 case "d":
-                    PDFPrinter.generatePDF();
+                    List<Client> clientList = ClientControl.loadClientsFromDB();
+                    List<Vehicle> vehicleList = VehicleControl.loadVehiclesFromDB();
+                    PDFPrinter.generatePDF(clientList,vehicleList);
+                    System.out.println("\nDrücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen\n");
+                    input.nextLine();
                     break;
                 case "Q":
                 case "q":

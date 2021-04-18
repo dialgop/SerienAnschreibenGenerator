@@ -35,9 +35,6 @@ public class ClientControl {
                 System.out.println("[name:" + name + ", vorname:" + vorname + ", anschritt:" + anschritt + " " + postleitzahl + ", " + stadt);
             }
             System.out.println("---------------------------------------------------\n");
-            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
-            mainInput.nextLine();
-            return;
         }
     }
 
@@ -45,7 +42,7 @@ public class ClientControl {
      * Methode, die in startClientControl() verwendet wird, um die vom Benutzer ausgewählte Option zu validieren
      * @return result: Ausgewählte Option über Konsole markiert
      */
-    public static int selectOption(){
+    private static int selectOption(){
         Scanner input = new Scanner(System.in);
         int result;
         while(true){
@@ -68,7 +65,7 @@ public class ClientControl {
      * einfügt. Nachdem alle Daten korrekt in das Objekt gesetzt wurden, wird es an die Methode SaveClientInDB()
      * übergeben.
      */
-    public static void writeClient(){
+    private static void writeClient(){
         Client clientToCreate = new Client();
 
         Scanner input = new Scanner(System.in);
@@ -128,9 +125,6 @@ public class ClientControl {
         String yesNoClient = input.nextLine();
         if(yesNoClient.equals("y") || yesNoClient.equals("Y"))
             SaveClientInDB(clientToCreate);
-            System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
-            input.nextLine();
-            return;
     }
 
     /**
