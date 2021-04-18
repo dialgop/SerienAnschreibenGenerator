@@ -32,15 +32,32 @@ class ValidationTest {
     }
 
     @Test
-    void testXMLPAth() {
-        boolean empty = main.Validation.testXMLPAth("");
-        boolean onlyPath = main.Validation.testXMLPAth("/home/Diego/Downloads/");
-        boolean anotherFile = main.Validation.testXMLPAth("/home/Diego/Downloads/autos.xls");
-        boolean correct = main.Validation.testXMLPAth("/home/Diego/Downloads/autos.xml");
+    void testPostalCode() {
+        boolean empty = main.Validation.testXMLPath("");
+        boolean mixedLettersDigits = main.Validation.testXMLPath("53lll");
+        boolean moreDigits = main.Validation.testXMLPath("1234567");
+        boolean lessDigits = main.Validation.testXMLPath("12");
+        boolean correct = main.Validation.testXMLPath("53113");
+
+        assertFalse(empty);
+        assertFalse(mixedLettersDigits);
+        assertFalse(moreDigits);
+        assertFalse(lessDigits);
+        assertTrue(correct);
+    }
+
+    @Test
+    void testXMLPath() {
+        boolean empty = main.Validation.testXMLPath("");
+        boolean onlyPath = main.Validation.testXMLPath("/home/Diego/Downloads/");
+        boolean anotherFile = main.Validation.testXMLPath("/home/Diego/Downloads/autos.xls");
+        boolean correct = main.Validation.testXMLPath("/home/Diego/Downloads/autos.xml");
 
         assertFalse(empty);
         assertFalse(onlyPath);
         assertFalse(anotherFile);
         assertTrue(correct);
     }
+
+
 }

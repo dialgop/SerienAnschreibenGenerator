@@ -39,7 +39,7 @@ public class Validation {
      * @param path - Input von Main() Methode.
      * @return true/false
      */
-    public static boolean testXMLPAth(String path){
+    public static boolean testXMLPath(String path){
         if(path.length()<5 || !path.endsWith(".xml")){
             System.out.println("Der Pfad enthält keine xml-Datei");
             return false;

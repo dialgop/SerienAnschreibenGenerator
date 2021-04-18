@@ -126,7 +126,7 @@ public class VehicleControl {
         List < Vehicle > vehiclesList = new ArrayList < Vehicle > ();
         File xmlFile = new File(pathXML);
 
-        if(!Validation.testXMLPAth(pathXML))
+        if(!Validation.testXMLPath(pathXML))
             return vehiclesList;
 
         //Erstellung von Objekten zum Lesen und Konvertieren der XML-Datei in ein Objekt Fahrzeug
