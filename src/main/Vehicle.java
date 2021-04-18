@@ -1,6 +1,12 @@
 package main;
 
+/**
+ * Eine Klassenentität, die einen Fahrzeug darstellt. Diese Klasse wird zum Setzen oder Abrufen der verschiedenen
+ * Attribute der Klasse verwendet.
+ */
+
 public class Vehicle {
+
     private String fahrzeugtyp;
     private String bezeichnung;
     private String heersteller;

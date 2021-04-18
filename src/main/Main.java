@@ -1,12 +1,21 @@
 package main;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * @author Diego Alejandro Gómez Pardo.
+     */
     public static void main(String[] args) throws IOException {
+        /**
+         * Hauptmenü: Ein Menü zur Auswahl der 3 Optionen, die sich auf die Aufgabe beziehen, wird eingesetzt:
+         * 1. Hinzufügen von Fahrzeugen zur DB aus einer XML-Datei.
+         * 2. Hinzufügen von Kunden zur DB oder Anzeigen von Kunden aus der DB
+         * 3. Erstellen von Briefen auf der Basis von Kunden und Fahrzeugen.
+         * Nachdem eine Option ausgeführt wurde, erscheint wieder das Hauptmenü
+         */
+
         Scanner input = new Scanner(System.in);
         while(true) {
             System.out.println("Bitte wählen Sie eine Option \n" +

@@ -5,8 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Klasse zur Ausführung aller Methoden, die mit dem Speichern von Kunden in der DB und dem Laden von Kunden
+ * aus der DB zusammenhängen
+ */
+
 public class ClientControl {
 
+    /**
+     * Diese Methode setzt ein Untermenü ein, in dem der Benutzer zwischen der Option des Hinzufügens oder der Anzeige
+     * der Kunden wählen muss
+     */
     public static void startClientControl(){
         Scanner mainInput = new Scanner(System.in);
         List<Client> dBClients;
@@ -21,17 +30,20 @@ public class ClientControl {
                 String name = clients.getName();
                 String vorname = clients.getVorname();
                 String anschritt = clients.getAnschrift();
-                System.out.println("[name:" + name + ", vorname:" + vorname + ", anschritt:" + anschritt);
+                int postleitzahl = clients.getPostleitzahl();
+                String stadt = clients.getStadt();
+                System.out.println("[name:" + name + ", vorname:" + vorname + ", anschritt:" + anschritt + " " + postleitzahl + ", " + stadt);
             }
             System.out.println("---------------------------------------------------\n");
             System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
             mainInput.nextLine();
+            return;
         }
     }
 
     /***
-     * Displays the option related to the client menu
-     * @return result: Selected option marked via console
+     * Methode, die in startClientControl() verwendet wird, um die vom Benutzer ausgewählte Option zu validieren
+     * @return result: Ausgewählte Option über Konsole markiert
      */
     public static int selectOption(){
         Scanner input = new Scanner(System.in);
@@ -51,6 +63,11 @@ public class ClientControl {
         return result;
     }
 
+    /**
+     * Methode, die nacheinander die persönliche Daten eines neuen Kunden aus dem Automobilhaus in ein Objekt Client
+     * einfügt. Nachdem alle Daten korrekt in das Objekt gesetzt wurden, wird es an die Methode SaveClientInDB()
+     * übergeben.
+     */
     public static void writeClient(){
         Client clientToCreate = new Client();
 
@@ -113,7 +130,13 @@ public class ClientControl {
             SaveClientInDB(clientToCreate);
             System.out.println("Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen:\n");
             input.nextLine();
+            return;
     }
+
+    /**
+     * Methode, die die Attribute eines Objekts Client in ein Tupel für die Tabelle Client einfügt
+     * @param client - An object client to save into the DB
+     */
 
     private static void SaveClientInDB(Client client){
         try {
@@ -138,6 +161,11 @@ public class ClientControl {
         }
     }
 
+    /**
+     * Methode, die alle Kunde direkt aus der Datenbank lädt und jedes einzelne in einem Client-Objekt speichert,
+     * das dann einer Liste von Client-Objekten hinzugefügt wird.
+     * @return clientsList: Liste mit Objekten von "Type Client" aus der DB.
+     */
     public static List<Client> loadClientsFromDB(){
         List<Client> clientsList = new ArrayList<>();
 
@@ -159,6 +187,17 @@ public class ClientControl {
 
         return clientsList;
     }
+
+    /**
+     * Methode, die während loadClientsFromDB() aufgerufen wird. Es speichert jedes Tupel von der DB-Query in einem
+     * Client-Objekt.
+     * @param name
+     * @param vorname
+     * @param anschrift
+     * @param postleitzahl
+     * @param stadt
+     * @return
+     */
 
     private static Client loadClient(String name, String vorname, String anschrift, int postleitzahl, String stadt){
         Client client = new Client();

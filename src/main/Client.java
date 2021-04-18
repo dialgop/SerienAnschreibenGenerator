@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * Eine Klassenentität, die einen Kunde darstellt. Diese Klasse wird zum Setzen oder Abrufen der verschiedenen
+ * Attribute der Klasse verwendet.
+ */
+
 public class Client {
 
     private String name;

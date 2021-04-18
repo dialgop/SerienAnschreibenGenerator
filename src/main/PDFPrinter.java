@@ -10,7 +10,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Klasse, die für jeden Kunden eine PDF-Datei mit den Fahrzeugen erzeugt, die die Firma auf Lager hat.
+ */
+
 public class PDFPrinter {
+
+    /**
+     * Methode, die basierend auf den Methoden loadClientsFromDB() und loadVehiclesFromDB() eine Liste von Objekten
+     * Client und eine weitere Liste von Objekten Vehicle lädt. Pro Client wird eine Vorlage eines Briefes erstellt
+     * und alle anzubietenden Fahrzeuge in diese Vorlage hinzugefügt. Jedes Brief wird gespeichert als PDF Datei als
+     * #name#_#vorname#.pdf
+     * @throws IOException
+     */
     public static void generatePDF() throws IOException {
 
         Scanner input = new Scanner(System.in);
@@ -109,5 +121,6 @@ public class PDFPrinter {
         }
         System.out.println("Die Dateien wurden erzeugt, Drücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen");
         input.nextLine();
+        return;
     }
 }
