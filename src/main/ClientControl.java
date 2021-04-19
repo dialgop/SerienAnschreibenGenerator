@@ -136,7 +136,7 @@ public class ClientControl {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin", "diego", "[myP4ssw0rd]");
+                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin", "automobilhaus", "[4ut0mobi1Haus]");
             Statement stmt = con.createStatement();
 
             String nameDB = client.getName();
@@ -147,7 +147,7 @@ public class ClientControl {
 
             stmt.executeUpdate("INSERT INTO Kunde (name,vorname,anschrift,postleitzahl,stadt) " +
                     "VALUES ('" + nameDB + "','" + vornameDB + "','" + anschrittDB + "'," + postleitzahlDB + ",'" + stadtDB +"')");
-            System.out.println("Saved data:["+nameDB+","+vornameDB+","+anschrittDB+"]");
+            System.out.println("Saved data:["+nameDB+","+vornameDB+","+anschrittDB+","+postleitzahlDB+","+stadtDB+"]");
 
             con.close();
         } catch (ClassNotFoundException | SQLException e) {
@@ -166,7 +166,7 @@ public class ClientControl {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin","diego","[myP4ssw0rd]");
+                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin","automobilhaus","[4ut0mobi1Haus]");
             Statement stmt=con.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM Kunde");

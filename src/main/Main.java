@@ -61,7 +61,7 @@ public class Main {
      */
     private static void continueMenu(){
         Scanner option = new Scanner(System.in);
-        System.out.println("\nDrücken Sie eine beliebige Taste, um zurück zum Hauptmenü zu gelangen\n");
+        System.out.println("\nDrücken Sie die Taste M und Intro, um zurück zum Hauptmenü zu gelangen\n");
         option.nextLine();
         return;
     }

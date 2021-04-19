@@ -36,7 +36,7 @@ public class VehicleControl {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin","diego","[myP4ssw0rd]");
+                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin","automobilhaus","[4ut0mobi1Haus]");
             Statement stmt=con.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM Fahrzeug");
@@ -91,7 +91,7 @@ public class VehicleControl {
             // DB Verbindung.
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin", "diego", "[myP4ssw0rd]");
+                    "jdbc:mysql://localhost:3306/automobilhaus?serverTimezone=Europe/Berlin", "automobilhaus", "[4ut0mobi1Haus]");
             Statement stmt = con.createStatement();
 
             //lets print User list information

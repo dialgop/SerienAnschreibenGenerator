@@ -119,7 +119,7 @@ public class PDFPrinter {
 
             contentStream.close();
 
-            String fileName = client.getName() + "_" + client.getVorname()+ ".pdf";
+            String fileName = "./Anschreiben/" + client.getName() + "_" + client.getVorname()+ ".pdf";
             document.save(fileName);
             document.close();
 
