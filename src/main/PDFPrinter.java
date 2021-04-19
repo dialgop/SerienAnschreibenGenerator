@@ -79,7 +79,20 @@ public class PDFPrinter {
             contentStream.newLine();
             contentStream.newLine();
 
+            int writtenVehicles = 0;
+
             for(Vehicle vehicle: vehicleList){
+
+                if(writtenVehicles==12 || (writtenVehicles-12)%16==0){
+                    contentStream.endText();
+                    contentStream.close();
+                    document.addPage(page=new PDPage());
+                    contentStream = new PDPageContentStream(document, page);
+                    contentStream.beginText();
+                    contentStream.setLeading(20.f);
+                    contentStream.newLineAtOffset(25, 700);
+                }
+
                 String lineAuto = "("+vehicle.getFahrzeugtyp()+") " + vehicle.getHeersteller() + " " +
                         vehicle.getBezeichnung() + ", " + vehicle.getKw_leistung() + " KW";
                 String lineVerkaufsPreis = "Preis: "+ vehicle.getVerkaufspreis();
@@ -90,6 +103,8 @@ public class PDFPrinter {
                 contentStream.setFont(PDType1Font.TIMES_ITALIC, 20);
                 contentStream.showText(lineVerkaufsPreis);
                 contentStream.newLine();
+
+                writtenVehicles++;
 
             }
 
