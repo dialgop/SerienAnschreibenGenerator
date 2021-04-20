@@ -7,15 +7,14 @@ import java.util.Scanner;
 public class Main {
     /**
      * @author Diego Alejandro Gómez Pardo.
-     */
-
-    /**
+     *
      * Hauptmenü: Ein Menü zur Auswahl der 3 Optionen, die sich auf die Aufgabe beziehen, wird eingesetzt:
      * 1. Hinzufügen von Fahrzeugen zur DB aus einer XML-Datei.
      * 2. Hinzufügen von Kunden zur DB oder Anzeigen von Kunden aus der DB
      * 3. Erstellen von Briefen auf der Basis von Kunden und Fahrzeugen.
      * Nachdem eine Option ausgeführt wurde, erscheint wieder das Hauptmenü
      */
+
     public static void main(String[] args) throws IOException {
 
         Scanner input = new Scanner(System.in);

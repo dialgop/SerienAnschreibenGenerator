@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fahrzeuge>
+    <fahrzeug>
+        <fahrzeugtyp>Limousine</fahrzeugtyp>
+        <bezeichnung>X P90D</bezeichnung>
+        <heersteller>Tesla</heersteller>
+        <kw_leistung>568</kw_leistung>
+        <verkaufspreis>79135</verkaufspreis>
+    </fahrzeug>
+    <fahrzeug>
+        <fahrzeugtyp>Limousine</fahrzeugtyp>
+        <bezeichnung>F12</bezeichnung>
+        <heersteller>Ferrari</heersteller>
+        <kw_leistung>545</kw_leistung>
+        <verkaufspreis>184800</verkaufspreis>
+    </fahrzeug>
+    <fahrzeug>
+        <fahrzeugtyp>LBW</fahrzeugtyp>
+        <bezeichnung>FH 460</bezeichnung>
+        <heersteller>Volvo</heersteller>
+        <kw_leistung>345</kw_leistung>
+        <verkaufspreis>59900</verkaufspreis>
+     </fahrzeug>
+</fahrzeuge>
