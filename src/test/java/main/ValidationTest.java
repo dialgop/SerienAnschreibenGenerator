@@ -37,7 +37,7 @@ class ValidationTest {
         boolean mixedLettersDigits = main.Validation.testXMLPath("53lll");
         boolean moreDigits = main.Validation.testXMLPath("1234567");
         boolean lessDigits = main.Validation.testXMLPath("12");
-        boolean correct = main.Validation.testXMLPath("53113");
+        boolean correct = main.Validation.testXMLPath("/home/diego/Downloads/autos.xml");
 
         assertFalse(empty);
         assertFalse(mixedLettersDigits);

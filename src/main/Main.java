@@ -7,12 +7,27 @@ import java.util.Scanner;
 public class Main {
     /**
      * @author Diego Alejandro Gómez Pardo.
-     *
+     */
+
+    /**
+     * Methode zum Anhalten des Menüs, damit der Benutzer Änderungen an den Daten sehen kann.
+     */
+    private static void continueMenu(){
+        Scanner option = new Scanner(System.in);
+        System.out.println("\nDrücken Sie die Taste M und Intro, um zurück zum Hauptmenü zu gelangen\n");
+        option.nextLine();
+        return;
+    }
+
+    /**
      * Hauptmenü: Ein Menü zur Auswahl der 3 Optionen, die sich auf die Aufgabe beziehen, wird eingesetzt:
      * 1. Hinzufügen von Fahrzeugen zur DB aus einer XML-Datei.
      * 2. Hinzufügen von Kunden zur DB oder Anzeigen von Kunden aus der DB
      * 3. Erstellen von Briefen auf der Basis von Kunden und Fahrzeugen.
      * Nachdem eine Option ausgeführt wurde, erscheint wieder das Hauptmenü
+     *
+     * @param args
+     * @throws IOException
      */
 
     public static void main(String[] args) throws IOException {
@@ -53,16 +68,6 @@ public class Main {
                     break;
             }
         }
-    }
-
-    /**
-     * Methode zum Anhalten des Menüs, damit der Benutzer Änderungen an den Daten sehen kann.
-     */
-    private static void continueMenu(){
-        Scanner option = new Scanner(System.in);
-        System.out.println("\nDrücken Sie die Taste M und Intro, um zurück zum Hauptmenü zu gelangen\n");
-        option.nextLine();
-        return;
     }
 }
 
